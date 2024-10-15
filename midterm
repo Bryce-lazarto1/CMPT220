@@ -1,0 +1,89 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class DealOrNoDeal {
+
+    static Integer[] caseValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    static ArrayList<Integer> caseNumbers = new ArrayList<>();
+    static int selectedCase;
+    static int selectedCaseValue;
+    static int bankerOffer;
+    static final int casesPerRound = 5;
+    ///looked up static on internet to make certain variables work///
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> remainingCases = new ArrayList<>();
+        ArrayList<Integer> removedValues = new ArrayList<>();
+///looked these types of arrays up too///
+        for (int i = 1; i <= 26; i++) {
+            caseNumbers.add(i);
+        }
+        System.out.println("Choose your case that stays with you ");
+        selectedCase = scanner.nextInt();
+        selectedCaseValue = caseValues[selectedCase - 1]; 
+        remainingCases.add(selectedCase);
+        System.out.println("You chose case " + selectedCase);
+        int rounds = 0;
+        
+        while (remainingCases.size() < 26) {
+            System.out.println("Select 5 cases to open");
+            
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Choose a case ");
+                int caseToOpen = scanner.nextInt();
+                
+                while (remainingCases.contains(caseToOpen)) {
+                    System.out.println("You already selected this case.");
+                    caseToOpen = scanner.nextInt();
+                }
+                remainingCases.add(caseToOpen);
+                int caseValue = caseValues[caseToOpen - 1];
+                removedValues.add(caseValue);
+                System.out.println("Case #" + caseToOpen + " has $" + caseValue);
+            }
+            System.out.println("Remaining case values:");
+            for (int value : caseValues) {
+                if (!removedValues.contains(value)) {
+                    System.out.print("$" + value + " ");
+                }
+            }
+            System.out.println();
+            rounds++;
+            bankerOffer = 1; 
+            System.out.println("The Banker offers you $1");
+            System.out.println("Deal or No Deal? (1 for Deal, 2 for No Deal): ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.println("You took the deal! You win $1.");
+                break;
+            } else {
+                System.out.println("No Deal! Continuing...");
+            }
+            if (remainingCases.size() == 25) {
+                break;
+            }
+        }
+        if (remainingCases.size() == 25) {
+            System.out.println("\nLast round!");
+            System.out.println("Do you want to keep your first case? (1 for Yes, 2 for No): ");
+            int finalChoice = scanner.nextInt();
+
+            if (finalChoice == 1) {
+                System.out.println("Your chosen case contains " + selectedCaseValue);
+                System.out.println("You win " + selectedCaseValue);
+            } else {
+                int finalCase = 0;
+                for (int i = 1; i <= 26; i++) {
+                    if (!remainingCases.contains(i)) {
+                        finalCase = i;
+                    }
+                }
+                int finalCaseValue = caseValues[finalCase - 1];
+                System.out.println("The final case is worth $" + finalCaseValue);
+                System.out.println("You win " + finalCaseValue);
+            }
+        } 
+    }
+}
