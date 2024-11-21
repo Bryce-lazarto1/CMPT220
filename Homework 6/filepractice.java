@@ -14,16 +14,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         //do you need something to start?
-        File inputfile = new File(/*what goes in here?*/);
+        File inputfile = new File(practice.txt);
+        List<String> HigherGPAs = new ArrayList<>();
+        int totalStudents = 0;
         try {
             Scanner input = new Scanner(inputfile);
-            while(input.hasNext()){
-                //what do we do at every line of the file?
+            while(input.hasNextline()){
+                String line = input.nextLine();
+                String[] parts = line.split(" ");
+                String name = parts[0];
+                Dub gpa = Double.parseDouble(parts[1]);
+                if (gpa > 3.5) {
+                    HigherGPAs.add(name);
             }
-        } catch (FileNotFoundException e) {
+                totalStudents++;
+    }   catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-      //optional if you want to keep this, just to show what the indices are of the list you created
-        System.out.println(list);
+        System.out.println("students with a gpa higher then 3.5 " + HigherGPAs);
+        System.out.println(List);
     }
 }
