@@ -18,16 +18,31 @@ public class student{
         gpa = g;
         id = i;
     }
-    
     //new method
     public boolean honorroll() {
         return gpa > 3.6;
     }
-
-    
     //new method
-    public boolean Freelunch(int randomId) {
+    public boolean freelunch(int randomId) {
         return id == randomId; 
     }
-
+    student MelC = new student("Melissa","Senior",3.4,1343);
+    student MelC = new student("james","Senior",3.2,1344);
+    student MelC = new student("kevin","Senior",3.9,1345);
+    student MelC = new student("troy","Senior",3.8,1346);
+    student MelC = new student("jax","Senior",3.3,1347);
+    Student[] studs = {Melc, JAM, KEV, TRO, Jax};
+        System.out.println("Honor Roll Status");
+        for (Student MelC : studs) {
+            System.out.println(MelC.name + (MelC.Honorroll() ? "Yes" : "No"));
+        }
+        Random random = new Random();
+        int randomId = 1343 + random.nextInt(5);
+        System.out.println(" free lunch id num  " + randomId);
+        for (Student MelC : studs) {
+            if (MelC.FreeLunch(randomId)) {
+                System.out.println(MelC.name + "gets free lunch");
+            }
+        }
+    }
 }
