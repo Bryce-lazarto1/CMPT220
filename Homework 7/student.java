@@ -20,8 +20,14 @@ public class student{
     }
     
     //new method
+    public boolean honorroll() {
+        return gpa > 3.6;
+    }
 
     
     //new method
+    public boolean Freelunch(int randomId) {
+        return id == randomId; 
+    }
 
 }
