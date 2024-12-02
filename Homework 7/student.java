@@ -23,7 +23,7 @@ public class student{
         return gpa > 3.6;
     }
     //new method
-    public boolean freelunch(int randomId) {
+    public boolean freelunch(int randomnum) {
         return id == randomId; 
     }
     student MelC = new student("Melissa","Senior",3.4,1343);
@@ -37,10 +37,10 @@ public class student{
             System.out.println(MelC.name + (MelC.Honorroll() ? "Yes" : "No"));
         }
         Random random = new Random();
-        int randomId = 1343 + random.nextInt(5);
-        System.out.println(" free lunch id num  " + randomId);
+        int randomnum = 1343 + random.nextInt(5);
+        System.out.println(" free lunch id num  " + randomnum);
         for (Student MelC : studs) {
-            if (MelC.FreeLunch(randomId)) {
+            if (MelC.FreeLunch(randomnum)) {
                 System.out.println(MelC.name + "gets free lunch");
             }
         }
