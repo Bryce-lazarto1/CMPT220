@@ -1,0 +1,59 @@
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SwagQuizGame {
+    private ArrayList<String> questions;
+    private ArrayList<String> answers;
+    private int score;
+
+    public SwagQuizGame() {
+        questions = new ArrayList<>();
+        answers = new ArrayList<>();
+        score = 0;
+        
+        questions.add("Who is the greatest basketball player ever?");
+        answers.add("lebron james");
+        questions.add("Who is often referred to as the chosen one?");
+        answers.add("lebron james");
+        questions.add("Who is the best teacher?");
+        answers.add("melissa chodziutko");
+    }
+
+    public static void main(String[] args) {
+        SwagQuizGame quizGame = new SwagQuizGame();
+        quizGame.startGame();
+    }
+
+    public void startGame() {
+        System.out.println("This is the swaggiest quiz game!!!");
+        System.out.println("Can you get 3 of 3 correct???");
+        for (int i = 0; i < questions.size(); i++) {
+            askQuestion(i);
+        }
+        System.out.println("Your score was " + score);
+        ScoreToFile();
+    }
+    private void askQuestion(int questionIndex) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Q" + (questionIndex + 1) + ": " + questions.get(questionIndex));
+        String userAnswer = sanitizeInput(scanner.nextLine());
+        if (userAnswer.equals(answers.get(questionIndex))) {
+            System.out.println("CORRECT");
+            score++;
+        } else {
+            System.out.println("CMON! Wrong! The correct answer is " + answers.get(questionIndex));
+        }
+    }
+    private String sanitizeInput(String input) {
+        return input.trim().toLowerCase();
+    }
+    private void writeScoreToFile() {
+        try (FileWriter writer = new FileWriter("userscore.txt", true)) {
+            writer.write("Score: " + score + "\n");
+            System.out.println("Score saved to file.");
+        } catch (IOException e) { ///i wasnt exactly sure about IOEXCeption had to look it up///
+            System.out.println("Could not save: " + e.getMessage());
+        }
+    }
+}
